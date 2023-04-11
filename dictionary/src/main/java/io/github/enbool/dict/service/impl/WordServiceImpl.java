@@ -25,9 +25,6 @@ public class WordServiceImpl implements WordService {
 
     @Override
     public Long countByDictionaryId(Long dictionaryId) {
-
-        return wordRepository.lambdaQuery()
-                .eq(Word::getDictionaryId, dictionaryId)
-                .count();
+        return wordRepository.countByDictionaryId(dictionaryId);
     }
 }

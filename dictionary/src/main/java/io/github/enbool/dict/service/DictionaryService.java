@@ -1,6 +1,7 @@
 package io.github.enbool.dict.service;
 
 import io.github.enbool.dict.model.entity.Dictionary;
+import io.github.enbool.dict.model.query.DictionaryQuery;
 
 import java.util.List;
 
@@ -21,6 +22,20 @@ public interface DictionaryService {
      * 获取字典列表
      * @return 字典列表
      */
-    List<Dictionary> list();
+    List<Dictionary> listAll();
+
+    /**
+     * list dictionary by query
+     * @param query 查询条件
+     * @return 字典列表
+     */
+    List<Dictionary> list(DictionaryQuery query);
+
+    /**
+     * delete dictionary by id
+     * @param id id of dictionary
+     * @return true if success
+     */
+    Boolean delete(Long id);
 
 }

@@ -15,4 +15,11 @@ import org.springframework.stereotype.Repository;
 @Component
 public class WordRepositoryImpl extends ServiceImpl<WordMapper, Word> implements WordRepository {
 
+
+    @Override
+    public Long countByDictionaryId(Long dictionaryId) {
+        return this.lambdaQuery()
+                .eq(Word::getDictionaryId, dictionaryId)
+                .count();
+    }
 }
