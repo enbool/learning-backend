@@ -8,7 +8,7 @@ public interface PageCons {
     /**
      * 页数
      */
-    String PAGE_PAGE = "current";
+    String PAGE_PAGE = "page";
     /**
      * 分页大小
      */
@@ -16,11 +16,11 @@ public interface PageCons {
     /**
      * 排序字段 ASC
      */
-    String PAGE_ASCS = "ascs";
+    String PAGE_ASC = "asc";
     /**
      * 排序字段 DESC
      */
-    String PAGE_DESCS = "descs";
+    String PAGE_DESC = "desc";
     /**
      * 查询总数
      */

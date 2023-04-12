@@ -4,14 +4,15 @@ import com.baomidou.mybatisplus.core.metadata.OrderItem;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.github.enbool.dict.constants.PageCons;
 import io.github.enbool.dict.utils.AntiSQLFilter;
+import io.github.enbool.dict.utils.StringUtil;
 import io.github.enbool.dict.utils.TypeUtils;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+
+import static com.baomidou.mybatisplus.core.toolkit.StringPool.COMMA;
 
 
 /**
@@ -23,7 +24,7 @@ public class BaseController {
     protected HttpServletRequest request;
 
     protected <T> Page<T> getPage() {
-        return this.getPage(false);
+        return this.getPage(true);
     }
 
     protected <T> Page<T> getPage(boolean openSort) {
@@ -39,14 +40,24 @@ public class BaseController {
         // 排序
         if (openSort) {
             List<OrderItem> orderItems = new ArrayList<>(8);
-            orderItems.addAll(OrderItem.ascs(getParameterSafeValues(PageCons.PAGE_ASCS)));
-            orderItems.addAll(OrderItem.descs(getParameterSafeValues(PageCons.PAGE_DESCS)));
+            String[] ascs = getParameterSafeValues(PageCons.PAGE_ASC);
+            if (ascs != null && ascs.length > 0) {
+                orderItems.addAll(OrderItem.ascs(ascs));
+            }
+            String[] descs = getParameterSafeValues(PageCons.PAGE_DESC);
+            if (descs != null && descs.length > 0) {
+                orderItems.addAll(OrderItem.descs(descs));
+            }
             page.setOrders(orderItems);
         }
         return page;
     }
 
     protected String[] getParameterSafeValues(String parameter) {
-        return AntiSQLFilter.getSafeValues(this.request.getParameterValues(parameter));
+        String value = this.request.getParameter(parameter);
+        if (StringUtil.isBlank(value)) {
+            return null;
+        }
+        return AntiSQLFilter.getSafeValues(value.split(COMMA));
     }
 }

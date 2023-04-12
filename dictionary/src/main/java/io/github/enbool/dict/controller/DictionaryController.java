@@ -9,9 +9,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -36,19 +34,19 @@ public class DictionaryController {
 
     @Operation(summary = "list dictionary")
     @PostMapping("/list")
-    public Result<List<Dictionary>> list(DictionaryQuery query) {
+    public Result<List<Dictionary>> list(@RequestBody DictionaryQuery query) {
         return Result.success(dictionaryService.list(query));
     }
 
     @Operation(summary = "save dictionary")
     @PostMapping("/save")
-    public Result<Long> save(Dictionary dictionary) {
+    public Result<Long> save(@RequestBody Dictionary dictionary) {
         return Result.success(dictionaryService.save(dictionary));
     }
 
     @Operation(summary = "delete dictionary")
     @DeleteMapping("/delete")
-    public Result<Boolean> delete(Long id) {
+    public Result<Boolean> delete(@RequestParam Long id) {
         return Result.success(dictionaryService.delete(id));
     }
 }
