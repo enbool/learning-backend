@@ -48,4 +48,11 @@ public interface WordService {
      * @return 是否删除成功
      */
     Boolean removeById(Long id);
+
+    /**
+     * 根据单词名称查询单词
+     * @param name 单词名称
+     * @return 单词
+     */
+    List<WordVO> queryByName(String name);
 }

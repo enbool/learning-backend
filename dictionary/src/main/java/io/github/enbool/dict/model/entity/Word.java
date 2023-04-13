@@ -37,4 +37,17 @@ public class Word extends BaseEntity {
     private Integer rank;
     @Schema(description = "字典ID")
     private Long dictionaryId;
+
+    @Override
+    public int hashCode() {
+        return this.name.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Word) {
+            return this.name.equals(((Word) obj).getName());
+        }
+        return false;
+    }
 }

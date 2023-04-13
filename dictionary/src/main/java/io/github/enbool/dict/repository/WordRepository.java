@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import io.github.enbool.dict.model.entity.Word;
 import io.github.enbool.dict.model.vo.WordVO;
 
+import java.util.List;
+
 /**
  * @Description:
  * @Author: wumin2
@@ -26,4 +28,11 @@ public interface WordRepository extends IService<Word> {
      * @return 分页结果
      */
     IPage<WordVO> pageByDictionary(Long dictionaryId, Page<Word> page);
+
+    /**
+     * 根据单词名称查询单词
+     * @param name 单词名称
+     * @return 单词
+     */
+    List<WordVO> queryByName(String name);
 }

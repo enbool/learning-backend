@@ -1,5 +1,7 @@
 package io.github.enbool.dict.exception;
 
+import org.springframework.http.HttpStatus;
+
 /**
  * @author wumin
  * @Description: error code interface
@@ -27,4 +29,31 @@ public interface ErrorCode {
      * @return
      */
     int getHttpStatus();
+
+
+    /**
+     * create a static error code
+     *
+     * @param code
+     * @param description
+     * @return
+     */
+    static ErrorCode of(int code, String description) {
+        return new ErrorCode() {
+            @Override
+            public String getDescription() {
+                return description;
+            }
+
+            @Override
+            public int getCode() {
+                return code;
+            }
+
+            @Override
+            public int getHttpStatus() {
+                return HttpStatus.OK.value();
+            }
+        };
+    }
 }

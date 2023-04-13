@@ -50,4 +50,9 @@ public class WordServiceImpl implements WordService {
     public Boolean removeById(Long id) {
         return wordRepository.removeById(id);
     }
+
+    @Override
+    public List<WordVO> queryByName(String name) {
+        return wordRepository.queryByName(name);
+    }
 }

@@ -14,6 +14,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * @Description:
  * @Author: wumin2
@@ -49,5 +51,11 @@ public class WordController extends BaseController {
     @PutMapping("/delete")
     public Result<Boolean> delete(@RequestParam Long id) {
         return Result.success(wordService.removeById(id));
+    }
+
+    @Operation(summary = "query word")
+    @GetMapping("/query")
+    public Result<List<WordVO>> query(@RequestParam String name) {
+        return Result.success(wordService.queryByName(name));
     }
 }
