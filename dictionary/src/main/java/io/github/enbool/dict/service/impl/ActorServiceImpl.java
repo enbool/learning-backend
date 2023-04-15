@@ -17,5 +17,5 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Service
 public class ActorServiceImpl  implements ActorService{
     @Autowired
-    private ActorRepository ActorRepository;
+    private ActorRepository actorRepository;
 }

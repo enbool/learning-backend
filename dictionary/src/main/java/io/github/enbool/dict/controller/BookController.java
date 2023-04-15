@@ -15,15 +15,15 @@ import io.swagger.v3.oas.annotations.tags.Tag;
  * @author wumin
  * @since 2023-04-15 23:14:52
  */
- @OpenAPIDefinition(
-         info = @Info(
-                 title = "Book API",
-                 version = "1.0",
-                 description = "Book API"
-         ), tags = {
-         @Tag(name = "Book", description = "Book API")
- }
- )
+@OpenAPIDefinition(
+        info = @Info(
+                title = "Book API",
+                version = "1.0",
+                description = "Book API"
+        ), tags = {
+        @Tag(name = "Book", description = "Book API")
+}
+)
 @RestController("/dict/book")
 public class BookController extends BaseController {
 

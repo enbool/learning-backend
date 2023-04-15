@@ -15,15 +15,15 @@ import io.swagger.v3.oas.annotations.tags.Tag;
  * @author wumin
  * @since 2023-04-15 23:14:52
  */
- @OpenAPIDefinition(
-         info = @Info(
-                 title = "Computility API",
-                 version = "1.0",
-                 description = "Computility API"
-         ), tags = {
-         @Tag(name = "Computility", description = "Computility API")
- }
- )
+@OpenAPIDefinition(
+        info = @Info(
+                title = "Computility API",
+                version = "1.0",
+                description = "Computility API"
+        ), tags = {
+        @Tag(name = "Computility", description = "Computility API")
+}
+)
 @RestController("/dict/computility")
 public class ComputilityController extends BaseController {
 

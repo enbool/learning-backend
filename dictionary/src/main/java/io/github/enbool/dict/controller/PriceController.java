@@ -15,15 +15,15 @@ import io.swagger.v3.oas.annotations.tags.Tag;
  * @author wumin
  * @since 2023-04-15 23:14:52
  */
- @OpenAPIDefinition(
-         info = @Info(
-                 title = "Price API",
-                 version = "1.0",
-                 description = "Price API"
-         ), tags = {
-         @Tag(name = "Price", description = "Price API")
- }
- )
+@OpenAPIDefinition(
+        info = @Info(
+                title = "Price API",
+                version = "1.0",
+                description = "Price API"
+        ), tags = {
+        @Tag(name = "Price", description = "Price API")
+}
+)
 @RestController("/dict/price")
 public class PriceController extends BaseController {
 

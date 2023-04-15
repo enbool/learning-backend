@@ -15,15 +15,15 @@ import io.swagger.v3.oas.annotations.tags.Tag;
  * @author wumin
  * @since 2023-04-15 23:14:53
  */
- @OpenAPIDefinition(
-         info = @Info(
-                 title = "WordPlan API",
-                 version = "1.0",
-                 description = "WordPlan API"
-         ), tags = {
-         @Tag(name = "WordPlan", description = "WordPlan API")
- }
- )
+@OpenAPIDefinition(
+        info = @Info(
+                title = "WordPlan API",
+                version = "1.0",
+                description = "WordPlan API"
+        ), tags = {
+        @Tag(name = "WordPlan", description = "WordPlan API")
+}
+)
 @RestController("/dict/word-plan")
 public class WordPlanController extends BaseController {
 
