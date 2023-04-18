@@ -6,6 +6,9 @@ import io.github.enbool.dict.repository.UserActorRepository;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * <p>
  * user_actor Repository Implementation
@@ -17,4 +20,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserActorRepositoryImpl extends ServiceImpl<UserActorMapper, UserActor> implements UserActorRepository {
 
+    @Override
+    public List<Long> listByUserId(Long userId) {
+        return this.lambdaQuery()
+                .select(UserActor::getActorId)
+                .eq(UserActor::getUserId, userId)
+                .list()
+                .stream()
+                .map(UserActor::getActorId)
+                .collect(Collectors.toList());
+    }
 }

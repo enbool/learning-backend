@@ -1,6 +1,9 @@
 package io.github.enbool.dict.service;
 
 import io.github.enbool.dict.model.entity.Actor;
+import io.github.enbool.dict.model.vo.ActorVO;
+
+import java.util.List;
 
 /**
  * <p>
@@ -12,4 +15,24 @@ import io.github.enbool.dict.model.entity.Actor;
  */
 public interface ActorService {
 
+    /**
+     * list all actor
+     * @return
+     */
+    List<ActorVO> list();
+
+    List<ActorVO> listActive();
+
+    /**
+     * find by current user
+     * @return
+     */
+    List<ActorVO> findByCurrentUser();
+
+    /**
+     * current user purchase actor
+     * @param id
+     * @return
+     */
+    Boolean purchase(Long id);
 }

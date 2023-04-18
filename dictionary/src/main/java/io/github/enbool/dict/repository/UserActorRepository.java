@@ -3,6 +3,8 @@ package io.github.enbool.dict.repository;
 import io.github.enbool.dict.model.entity.UserActor;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
  * <p>
  * user_actor Repository
@@ -13,4 +15,10 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface UserActorRepository extends IService<UserActor> {
 
+    /**
+     * find id list of actor by userId
+     * @param userId
+     * @return
+     */
+    List<Long> listByUserId(Long userId);
 }

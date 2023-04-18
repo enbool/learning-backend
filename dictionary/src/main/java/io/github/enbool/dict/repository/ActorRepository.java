@@ -3,6 +3,8 @@ package io.github.enbool.dict.repository;
 import io.github.enbool.dict.model.entity.Actor;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
  * <p>
  * actor Repository
@@ -13,4 +15,10 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface ActorRepository extends IService<Actor> {
 
+    /**
+     * find by userId and status of actor
+     * @param active
+     * @return
+     */
+    List<Actor> listByStatus(String active);
 }

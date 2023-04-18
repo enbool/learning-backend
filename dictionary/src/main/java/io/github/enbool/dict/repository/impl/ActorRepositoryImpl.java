@@ -4,7 +4,10 @@ import io.github.enbool.dict.model.entity.Actor;
 import io.github.enbool.dict.mapper.ActorMapper;
 import io.github.enbool.dict.repository.ActorRepository;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import io.github.enbool.dict.utils.StringUtil;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * <p>
@@ -16,5 +19,10 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ActorRepositoryImpl extends ServiceImpl<ActorMapper, Actor> implements ActorRepository {
-
+    @Override
+    public List<Actor> listByStatus(String status) {
+        return this.lambdaQuery()
+                .eq(StringUtil.isNotBlank(status), Actor::getStatus, status)
+        return null;
+    }
 }
