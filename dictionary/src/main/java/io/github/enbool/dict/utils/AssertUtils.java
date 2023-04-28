@@ -364,7 +364,7 @@ public class AssertUtils {
      * @param messageParams
      */
     public static void isEquals(String str1, String str2, ErrorCode errorCode, String format, Object... messageParams) {
-        if (!StringUtil.equals(str1, str2)) {
+        if (!StringUtils.equals(str1, str2)) {
             throw new BusinessException(errorCode, String.format(format, messageParams));
         }
     }
@@ -395,7 +395,7 @@ public class AssertUtils {
      */
     public static void notEquals(String str1, String str2, ErrorCode errorCode, String format,
         Object... messageParams) {
-        if (StringUtil.equals(str1, str2)) {
+        if (StringUtils.equals(str1, str2)) {
             throw new BusinessException(errorCode, String.format(format, messageParams));
         }
     }

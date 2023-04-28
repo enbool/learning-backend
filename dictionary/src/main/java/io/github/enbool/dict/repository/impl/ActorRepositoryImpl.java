@@ -4,7 +4,7 @@ import io.github.enbool.dict.model.entity.Actor;
 import io.github.enbool.dict.mapper.ActorMapper;
 import io.github.enbool.dict.repository.ActorRepository;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import io.github.enbool.dict.utils.StringUtil;
+import io.github.enbool.dict.utils.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,7 +22,7 @@ public class ActorRepositoryImpl extends ServiceImpl<ActorMapper, Actor> impleme
     @Override
     public List<Actor> listByStatus(String status) {
         return this.lambdaQuery()
-                .eq(StringUtil.isNotBlank(status), Actor::getStatus, status)
-        return null;
+                .eq(StringUtils.isNotBlank(status), Actor::getStatus, status)
+                .list();
     }
 }

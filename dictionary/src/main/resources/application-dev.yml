@@ -1,0 +1,7 @@
+oss:
+  qiniu:
+    url: rtt80xzws.bkt.clouddn.com
+    accessKey: M81MygMALksAMN55Gdv8lL06cfFXUPcRFEkBVht6
+    secretKey: 7s3AxCsn8M8_taMMyXeBxi7wWo-2Tv3rr0-JWMCy
+    bucket: enbool-learning
+    url-expire: 3600

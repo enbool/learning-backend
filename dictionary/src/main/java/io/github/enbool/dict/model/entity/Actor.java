@@ -33,6 +33,9 @@ public class Actor extends BaseEntity{
     @Schema(description = "prompts")
     private String prompts;
 
+    @Schema(description = "voice id")
+    private String voiceId;
+
     @Schema(description = "状态;ACTIVE,INACTIVE")
     private String status;
 }

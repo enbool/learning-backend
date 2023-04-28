@@ -1,6 +1,6 @@
 package io.github.enbool.dict.context;
 
-import io.github.enbool.dict.utils.StringUtil;
+import io.github.enbool.dict.utils.StringUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -83,7 +83,7 @@ public class UserContext {
         String userIdStr = httpServletRequest.getHeader(HTTP_HEADER_USER_ID_KEY);
         this.userId = Long.valueOf(userIdStr);
         String username = httpServletRequest.getHeader(HTTP_HEADER_USER_NAME_KEY);
-        if (StringUtil.isNotBlank(username)) {
+        if (StringUtils.isNotBlank(username)) {
             //解析用户账号（中文名会出现乱码问题）
             try {
                 this.username = URLDecoder.decode(username, "UTF-8");

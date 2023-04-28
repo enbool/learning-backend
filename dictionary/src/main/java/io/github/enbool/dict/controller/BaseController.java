@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.OrderItem;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.github.enbool.dict.constants.PageCons;
 import io.github.enbool.dict.utils.AntiSQLFilter;
-import io.github.enbool.dict.utils.StringUtil;
+import io.github.enbool.dict.utils.StringUtils;
 import io.github.enbool.dict.utils.TypeUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +55,7 @@ public class BaseController {
 
     protected String[] getParameterSafeValues(String parameter) {
         String value = this.request.getParameter(parameter);
-        if (StringUtil.isBlank(value)) {
+        if (StringUtils.isBlank(value)) {
             return null;
         }
         return AntiSQLFilter.getSafeValues(value.split(COMMA));

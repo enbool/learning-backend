@@ -5,15 +5,23 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.github.enbool.dict.context.UserContext;
+import io.github.enbool.dict.context.UserContextHolder;
+import io.github.enbool.dict.integration.VoiceService;
+import io.github.enbool.dict.model.ElevenActorType;
 import io.github.enbool.dict.model.WordJson;
+import io.github.enbool.dict.model.entity.Actor;
 import io.github.enbool.dict.model.entity.Dictionary;
 import io.github.enbool.dict.model.entity.Word;
+import io.github.enbool.dict.repository.ActorRepository;
+import io.github.enbool.dict.service.ActorService;
 import io.github.enbool.dict.service.DictionaryService;
 import io.github.enbool.dict.service.WordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -27,7 +35,7 @@ import java.util.stream.Collectors;
  * @Author: wumin2
  * @Date: 2023/4/4 16:57
  */
-//@RestController("/api/dict")
+@RestController("/api/app")
 public class AppController {
     @Autowired
     private DictionaryService dictionaryService;
@@ -35,8 +43,21 @@ public class AppController {
     private WordService wordService;
     @Autowired
     ObjectMapper objectMapper;
+    @Autowired
+    private VoiceService voiceService;
+    @Autowired
+    private ActorRepository actorRepository;
 
-    @PostMapping("/save")
+    @PostMapping("/voice")
+    public String voice(@RequestParam String text, @RequestParam String actorName) {
+        UserContextHolder.getContext().setUserId(1L);
+        ElevenActorType actorType = ElevenActorType.getByName(actorName);
+        Actor actor = new Actor();
+        actor.setVoiceId(actorType.getVoiceId());
+        return voiceService.synthesis(text, actor);
+    }
+
+    //@PostMapping("/save")
     public Long saveDict(@RequestParam String path, @RequestParam String dictName, @RequestParam String dictDesc) throws JsonProcessingException {
         // 1、根据path读取文件
         FileReader fileReader = new FileReader(path);
@@ -67,7 +88,7 @@ public class AppController {
         return (long) words.size();
     }
 
-    @PostMapping("/youDao")
+    //@PostMapping("/youDao")
     public void youDao(@RequestParam String path) throws JsonProcessingException {
         File root = new File(path);
         File[] files = root.listFiles();
@@ -79,7 +100,7 @@ public class AppController {
         }
     }
 
-    @GetMapping("/test")
+    //@GetMapping("/test")
     public void updateNumber() {
         List<Dictionary> dictionaries = dictionaryService.listAll();
         // 计算每个字典的单词数量
