@@ -1,8 +1,11 @@
 package io.github.enbool.dict.utils;
 
 import io.jsonwebtoken.*;
+import io.jsonwebtoken.security.Keys;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.crypto.SecretKey;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -23,15 +26,11 @@ public class JwtTokenUtil {
      */
     public static final String TOKEN_PREFIX = "Bearer ";
 
-    /**
-     * token 过期时间 30分钟
-     */
-    public static final long EXPIRATION = 1000 * 60 * 30;
 
     /**
      * 加密的key
      */
-    public static final String APP_SECRET_KEY = "secret";
+    public static final String APP_SECRET_KEY = "SUZ3ZWYyMzRTMkY7RUZTRjtaVixNRUlPUFAtUjIzLFNPUFBQU0RGO10yMz1HUlRZW04uL0JLQVBbTDM0LU9HLEVQQUxUNDMtRSxPRVJULUFTS0wzUFtFV1RPTC1bMzQ1VExbNUtzZGZrLTM0LHJob2dvOztkZmc7cm1sO2NpMGVyOw==";
 
     /**
      * 权限的声明key
@@ -43,24 +42,23 @@ public class JwtTokenUtil {
     /**
      * 生成token
      *
-     * @param username 用户名
-     * @param role     用户角色
+     * @param user 用户
+     * @param issueAt 签发时间
+     * @param expiration 过期时间
+     *
      * @return token
      */
-    public static String createToken(String username, String role) {
-
-        Map<String, Object> map = new HashMap<>();
-        map.put(ROLE_CLAIM, role);
-
+    public static String createToken(UserDetails user, Long issueAt, Long expiration) {
         String token = Jwts
                 .builder()
-                .setSubject(username)
-                //.setClaims(map)
-                .claim(USERNAME_CLAIM, username)
-                .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION))
+                .setSubject(user.getUsername())
+                .claim(ROLE_CLAIM, user.getAuthorities())
+                .claim(USERNAME_CLAIM, user.getUsername())
+                .setIssuedAt(new Date(issueAt))
+                .setExpiration(new Date(issueAt + expiration))
                 .signWith(SignatureAlgorithm.HS256, APP_SECRET_KEY)
                 .compact();
+
         return token;
     }
 

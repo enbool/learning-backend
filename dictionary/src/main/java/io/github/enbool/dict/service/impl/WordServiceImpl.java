@@ -2,6 +2,7 @@ package io.github.enbool.dict.service.impl;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import io.github.enbool.dict.context.UserContext;
 import io.github.enbool.dict.exception.BusinessErrorEnum;
 import io.github.enbool.dict.model.entity.Word;
 import io.github.enbool.dict.model.form.WordForm;
@@ -10,6 +11,9 @@ import io.github.enbool.dict.repository.WordRepository;
 import io.github.enbool.dict.service.WordService;
 import io.github.enbool.dict.utils.AssertUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

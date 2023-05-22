@@ -30,13 +30,13 @@ public enum BusinessErrorEnum implements ErrorCode {
     /**
      * token异常，需要重新登录
      */
-    TOKEN_ERROR(10004, 401, "Authentication failed, please log in again"),
+    TOKEN_ERROR(10004, 401, "Authentication failed, please sign in again"),
 
 
     /**
      * 用户信息异常，重新登录
      */
-    USER_ID_ERROR(10006, 401, "User information exception, please log in again"),
+    USER_INFO_ERROR(10006, 401, "User information exception, please log in again"),
 
     JSON_SERIALIZE_ERROR(10010, 400, "JSON serialization error"),
     /**

@@ -1,6 +1,6 @@
 package io.github.enbool.dict.service.impl;
 
-import io.github.enbool.dict.context.UserContextHolder;
+import io.github.enbool.dict.context.UserContext;
 import io.github.enbool.dict.model.entity.Actor;
 import io.github.enbool.dict.model.vo.ActorVO;
 import io.github.enbool.dict.repository.UserActorRepository;
@@ -46,7 +46,7 @@ public class ActorServiceImpl  implements ActorService{
     @Override
     public List<ActorVO> findByCurrentUser() {
         // find actor by current user
-        Long userId = UserContextHolder.getUserId();
+        Long userId = UserContext.getUserId();
         List<Long> actorIds = userActorRepository.listByUserId(userId);
         List<Actor> actors = actorRepository.listByIds(actorIds);
 
@@ -57,7 +57,7 @@ public class ActorServiceImpl  implements ActorService{
 
     @Override
     public Boolean purchase(Long id) {
-        Long userId = UserContextHolder.getUserId();
+        Long userId = UserContext.getUserId();
         return null;
     }
 }

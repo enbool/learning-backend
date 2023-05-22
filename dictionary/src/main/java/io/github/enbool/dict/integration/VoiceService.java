@@ -1,12 +1,10 @@
 package io.github.enbool.dict.integration;
 
-import io.github.enbool.dict.context.UserContextHolder;
+import io.github.enbool.dict.context.UserContext;
 import io.github.enbool.dict.model.entity.Actor;
 import jakarta.annotation.Resource;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StopWatch;
-import org.springframework.web.context.WebApplicationContext;
 
 import java.util.UUID;
 
@@ -36,7 +34,7 @@ public class VoiceService {
         byte[] bytes = voiceEngine.synthesis(text, actor);
         stopWatch.stop();
         stopWatch.start("upload");
-        String fileName = fileService.upload(bytes, null, UserContextHolder.getUserId() + actor.getVoiceId() + UUID.randomUUID() + ".wav");
+        String fileName = fileService.upload(bytes, null, UserContext.getUserId() + actor.getVoiceId() + UUID.randomUUID() + ".wav");
         stopWatch.stop();
         System.out.println(stopWatch.prettyPrint());
         return fileService.getFileUrl(fileName);

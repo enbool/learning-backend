@@ -40,10 +40,13 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             if (jwt != null && JwtTokenUtil.validateJwtToken(jwt)) {
                 String username = JwtTokenUtil.getUsernameFromJwtToken(jwt);
 
-                // 如果令牌存在(存在逻辑自己编写)，则加载令牌
                 UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+
                 UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
-                        userDetails, null, userDetails.getAuthorities());
+                        userDetails,
+                        userDetails.getPassword(),
+                        userDetails.getAuthorities());
+
                 authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
                 SecurityContextHolder.getContext().setAuthentication(authenticationToken);

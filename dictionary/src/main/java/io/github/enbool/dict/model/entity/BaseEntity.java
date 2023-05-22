@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import io.github.enbool.dict.constants.ProjectConstants;
+import io.github.enbool.dict.utils.StringUtils;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
@@ -42,4 +44,71 @@ public class BaseEntity implements Serializable {
     public static final String CREATED_TIME = "createdTime";
     public static final String UPDATED_TIME = "updatedTime";
 
+    /**
+     * 通过createdBy字段获取创建人id
+     * @return
+     */
+    public Long getCreatedById(){
+        if (StringUtils.isBlank(createdBy)) {
+            return null;
+        }
+
+        String[] split = createdBy.split(ProjectConstants.COLON);
+        if (split.length != 2) {
+            return null;
+        }
+
+        return Long.parseLong(split[0]);
+    }
+
+    /**
+     * 通过createdBy字段获取创建人username
+     * @return
+     */
+    public String getCreatedByUsername(){
+        if (StringUtils.isBlank(createdBy)) {
+            return null;
+        }
+
+        String[] split = createdBy.split(ProjectConstants.COLON);
+        if (split.length != 2) {
+            return null;
+        }
+
+        return split[1];
+    }
+
+    /**
+     * 通过updatedBy字段获取更新人id
+     * @return
+     */
+    public Long getUpdatedById(){
+        if (StringUtils.isBlank(updatedBy)) {
+            return null;
+        }
+
+        String[] split = updatedBy.split(ProjectConstants.COLON);
+        if (split.length != 2) {
+            return null;
+        }
+
+        return Long.parseLong(split[0]);
+    }
+
+    /**
+     * 通过updatedBy字段获取更新人username
+     * @return
+     */
+    public String getUpdatedByUsername(){
+        if (StringUtils.isBlank(updatedBy)) {
+            return null;
+        }
+
+        String[] split = updatedBy.split(ProjectConstants.COLON);
+        if (split.length != 2) {
+            return null;
+        }
+
+        return split[1];
+    }
 }

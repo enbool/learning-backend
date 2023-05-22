@@ -14,7 +14,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-@Schema(name = "UserBook", description = " Form")
+@Schema(name = "UserBook", description = "Form")
 public class UserBookForm {
 
     @Schema(description = "用户id")
