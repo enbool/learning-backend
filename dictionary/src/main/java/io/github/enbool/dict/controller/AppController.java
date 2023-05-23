@@ -46,7 +46,6 @@ public class AppController {
 
     @PostMapping("/voice")
     public String voice(@RequestParam String text, @RequestParam String actorName) {
-        UserContextHolder.getContext().setUserId(1L);
         ElevenActorType actorType = ElevenActorType.getByName(actorName);
         Actor actor = new Actor();
         actor.setVoiceId(actorType.getVoiceId());

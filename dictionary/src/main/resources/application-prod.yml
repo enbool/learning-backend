@@ -5,11 +5,3 @@ oss:
     secretKey: 7s3AxCsn8M8_taMMyXeBxi7wWo-2Tv3rr0-JWMCy
     bucket: enbool-learning
     url-expire: 3600
-
-app:
-  security:
-    whitelist:
-      - /doc.html
-      - /webjars/
-      - /v3/api-docs
-      - /api/v1/auth/*
