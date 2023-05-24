@@ -1,13 +1,12 @@
 package io.github.enbool.dict.service.impl;
 
 import io.github.enbool.dict.model.entity.User;
+import io.github.enbool.dict.model.form.UserRegisterForm;
+import io.github.enbool.dict.repository.UserRepository;
 import io.github.enbool.dict.service.UserService;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-import java.util.Collection;
 
 /**
  * @Description:
@@ -16,16 +15,16 @@ import java.util.Collection;
  */
 @Service
 public class UserServiceImpl implements UserService {
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
     public User loadUserByUsername(String username) throws UsernameNotFoundException {
-        if ("admin".equals(username)) {
-            User user = new User();
-            user.setId(1L);
-            user.setUsername("admin");
-            return user;
-        } else {
-            throw new UsernameNotFoundException("用户不存在");
-        }
+        return userRepository.findByUsername(username);
+    }
+
+    @Override
+    public Long registerAdmin(UserRegisterForm form) {
+        return userRepository.registerAdmin(form);
     }
 }

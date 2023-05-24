@@ -10,6 +10,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import static io.github.enbool.dict.constants.ProjectConstants.APP_SECRET_KEY;
+
 /**
  * @Description:
  * @Author: wumin2
@@ -26,12 +28,6 @@ public class JwtTokenUtil {
      */
     public static final String TOKEN_PREFIX = "Bearer ";
 
-
-    /**
-     * 加密的key
-     */
-    public static final String APP_SECRET_KEY = "SUZ3ZWYyMzRTMkY7RUZTRjtaVixNRUlPUFAtUjIzLFNPUFBQU0RGO10yMz1HUlRZW04uL0JLQVBbTDM0LU9HLEVQQUxUNDMtRSxPRVJULUFTS0wzUFtFV1RPTC1bMzQ1VExbNUtzZGZrLTM0LHJob2dvOztkZmc7cm1sO2NpMGVyOw==";
-
     /**
      * 权限的声明key
      */
@@ -44,18 +40,18 @@ public class JwtTokenUtil {
      *
      * @param user 用户
      * @param issueAt 签发时间
-     * @param expiration 过期时间
+     * @param expireAt 过期时间
      *
      * @return token
      */
-    public static String createToken(UserDetails user, Long issueAt, Long expiration) {
+    public static String createToken(UserDetails user, Long issueAt, Long expireAt) {
         String token = Jwts
                 .builder()
                 .setSubject(user.getUsername())
                 .claim(ROLE_CLAIM, user.getAuthorities())
                 .claim(USERNAME_CLAIM, user.getUsername())
                 .setIssuedAt(new Date(issueAt))
-                .setExpiration(new Date(issueAt + expiration))
+                .setExpiration(new Date(expireAt))
                 .signWith(SignatureAlgorithm.HS256, APP_SECRET_KEY)
                 .compact();
 

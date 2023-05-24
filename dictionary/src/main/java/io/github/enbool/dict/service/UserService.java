@@ -1,5 +1,6 @@
 package io.github.enbool.dict.service;
 
+import io.github.enbool.dict.model.form.UserRegisterForm;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**
@@ -9,4 +10,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
  */
 public interface UserService extends UserDetailsService {
 
+    /**
+     * 注册管理员
+     *
+     * @param form
+     * @return
+     */
+    Long registerAdmin(UserRegisterForm form);
 }

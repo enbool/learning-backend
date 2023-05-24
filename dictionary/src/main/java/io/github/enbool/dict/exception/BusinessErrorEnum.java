@@ -46,6 +46,26 @@ public enum BusinessErrorEnum implements ErrorCode {
 
     /********************* 以下为自定义错误码 **********************/
     /**
+     * 用户
+     */
+
+    /**
+     * 用户名已存在
+     */
+    USERNAME_EXIST(20001, 200, "Username already exists"),
+
+    /**
+     * 邮箱已存在
+     */
+    EMAIL_EXIST(20002, 200, "Email already exists"),
+
+    /**
+     * 手机号已存在
+     */
+    PHONE_EXIST(20003, 200, "Phone already exists"),
+
+
+    /**
      * 单词本中有单词，所以不能删除
      */
     DICTIONARY_NOT_EMPTY(11001, 200, "Dictionary is not empty, so it cannot be deleted"),

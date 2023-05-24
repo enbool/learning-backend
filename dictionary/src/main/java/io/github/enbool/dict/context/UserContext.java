@@ -38,7 +38,7 @@ public class UserContext {
      */
     public static String getUsernameSafely() {
         SecurityContext context = SecurityContextHolder.getContext();
-        if (context == null) {
+        if (context == null || !(context.getAuthentication().getPrincipal()  instanceof  User)) {
             return null;
         }
         User principal = (User) context.getAuthentication().getPrincipal();
@@ -79,7 +79,7 @@ public class UserContext {
      */
     public static Long getUserIdSafely() {
         SecurityContext context = SecurityContextHolder.getContext();
-        if (context == null) {
+        if (context == null || !(context.getAuthentication().getPrincipal()  instanceof  User)) {
             return null;
         }
         User principal = (User) context.getAuthentication().getPrincipal();
@@ -94,7 +94,7 @@ public class UserContext {
      */
     public static String getUserSafely() {
         SecurityContext context = SecurityContextHolder.getContext();
-        if (context == null) {
+        if (context == null || !(context.getAuthentication().getPrincipal()  instanceof  User)) {
             return null;
         }
         User principal = (User) context.getAuthentication().getPrincipal();

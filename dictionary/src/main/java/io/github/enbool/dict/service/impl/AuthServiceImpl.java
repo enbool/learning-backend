@@ -36,8 +36,9 @@ public class AuthServiceImpl implements AuthService {
         AssertUtils.isTrue(passwordEncoder.matches(form.getPassword(), userDetails.getPassword()), BusinessErrorEnum.TOKEN_ERROR);
         // 2、生成token
         Long now = Instant.now().toEpochMilli();
-        String token = JwtTokenUtil.createToken(userDetails, now, ADMIN_EXPIRATION);
-        AccessToken accessToken = new AccessToken(token, now + ADMIN_EXPIRATION);
+        Long expireAt = now + ADMIN_EXPIRATION;
+        String token = JwtTokenUtil.createToken(userDetails, now, expireAt);
+        AccessToken accessToken = new AccessToken(token, expireAt);
 
         return accessToken;
     }

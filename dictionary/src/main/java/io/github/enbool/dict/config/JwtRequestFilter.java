@@ -1,5 +1,7 @@
 package io.github.enbool.dict.config;
 
+import io.github.enbool.dict.exception.BusinessErrorEnum;
+import io.github.enbool.dict.utils.AssertUtils;
 import io.github.enbool.dict.utils.JwtTokenUtil;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -41,6 +43,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                 String username = JwtTokenUtil.getUsernameFromJwtToken(jwt);
 
                 UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+                AssertUtils.notNull(userDetails, BusinessErrorEnum.TOKEN_ERROR);
 
                 UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                         userDetails,
