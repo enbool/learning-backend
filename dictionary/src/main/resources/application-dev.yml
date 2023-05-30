@@ -14,3 +14,5 @@ app:
       - /v3/api-docs/**
       - /api/v1/auth/*
       - /admin/user/register/admin
+      - /ws/**
+      - /ws
